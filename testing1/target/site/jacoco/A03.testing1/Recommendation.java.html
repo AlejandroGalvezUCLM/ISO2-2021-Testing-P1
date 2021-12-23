@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Recommendation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testing1</a> &gt; <a href="index.source.html" class="el_package">A03.testing1</a> &gt; <span class="el_source">Recommendation.java</span></div><h1>Recommendation.java</h1><pre class="source lang-java linenums">package A03.testing1;
+
+import java.util.ArrayList;
+
+public class Recommendation {
+	
+	Weather weather;
+	Person person;
+	Place place;
+	
+<span class="fc" id="L11">	public Recommendation(Weather w, Person p, Place pl) {</span>
+<span class="fc" id="L12">		this.weather = w;</span>
+<span class="fc" id="L13">		this.person = p;</span>
+<span class="fc" id="L14">		this.place = pl;</span>
+<span class="fc" id="L15">	}</span>
+	
+	public boolean personIsSafe() {
+<span class="fc bfc" id="L18" title="All 6 branches covered.">		if(this.person.isHealthy() &amp;&amp; !this.person.hasSymptoms() &amp;&amp; !this.person.hadRecentContactPositive() </span>
+<span class="fc bfc" id="L19" title="All 4 branches covered.">				&amp;&amp; this.person.hasPassedCovid() &amp;&amp; this.person.hasVaccinationCard())</span>
+<span class="fc" id="L20">			return true;</span>
+		else
+<span class="fc" id="L22">			return false;</span>
+	}
+	
+	public boolean checkStayHome() {
+<span class="fc bfc" id="L26" title="All 4 branches covered.">		if(this.weather.getTemperature() &lt; 0 &amp;&amp; this.weather.getHumidity() &lt; 0.15 </span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">				&amp;&amp; this.weather.hasPrecipitation())</span>
+<span class="fc" id="L28">			return true;</span>
+		else
+<span class="fc" id="L30">			return false;</span>
+	}
+	
+	public boolean checkGoSkiing() {
+<span class="fc bfc" id="L34" title="All 4 branches covered.">		if(this.weather.getTemperature() &lt; 0 &amp;&amp; this.weather.getHumidity() &lt; 0.15 </span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">			&amp;&amp; !this.weather.hasPrecipitation()</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">			&amp;&amp; !this.place.hasCapacityProblems())</span>
+<span class="fc" id="L37">			return true;</span>
+		else
+<span class="fc" id="L39">			return false;</span>
+	}
+	
+	public boolean checkGoHiking() {
+<span class="fc bfc" id="L43" title="All 4 branches covered.">		if(0 &lt;= this.weather.getTemperature() &amp;&amp; this.weather.getTemperature() &lt; 15 </span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">				&amp;&amp; !this.weather.hasPrecipitation()</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">				&amp;&amp; !this.place.hasCapacityProblems())</span>
+<span class="fc" id="L46">			return true;</span>
+		else
+<span class="fc" id="L48">			return false;</span>
+	}
+	
+	public boolean checkGoSightseeing() {
+<span class="fc bfc" id="L52" title="All 4 branches covered.">		if((15 &lt;= this.weather.getTemperature() &amp;&amp; this.weather.getTemperature() &lt; 25) </span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">				&amp;&amp; !this.weather.hasPrecipitation()</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">				&amp;&amp; !(this.weather.getHumidity() &gt; 0.60) </span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">				&amp;&amp; !this.place.hasCapacityProblems())</span>
+<span class="fc" id="L56">			return true;</span>
+		else
+<span class="fc" id="L58">			return false;</span>
+	}
+	
+	public boolean checkGoBeering() {
+<span class="fc bfc" id="L62" title="All 4 branches covered.">		if((25 &lt;= this.weather.getTemperature() &amp;&amp; this.weather.getTemperature() &lt; 35) </span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">				&amp;&amp; !this.weather.hasPrecipitation()</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">				&amp;&amp; !this.place.hasCapacityProblems())</span>
+<span class="fc" id="L65">			return true;</span>
+		else
+<span class="fc" id="L67">			return false;</span>
+			
+	}
+	
+	public boolean checkGoSwimming() {
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		if(30 &lt; this.weather.getTemperature() </span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">				&amp;&amp; !this.weather.hasPrecipitation())</span>
+<span class="fc" id="L74">			return true;</span>
+		else
+<span class="fc" id="L76">			return false;</span>
+	}
+	
+	public ArrayList&lt;String&gt; getRecommendation() throws StayHomeException {
+<span class="fc" id="L80">		ArrayList&lt;String&gt; actRecommended = new ArrayList&lt;String&gt;();</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		if(!personIsSafe()) {</span>
+<span class="fc" id="L82">			throw new StayHomeException(&quot;You cannot perform any operation&quot;);</span>
+		}
+		
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		if(checkStayHome()) </span>
+<span class="fc" id="L86">			actRecommended.add(&quot;Stay at home&quot;);</span>
+		
+<span class="fc bfc" id="L88" title="All 2 branches covered.">		if(checkGoSkiing())</span>
+<span class="fc" id="L89">			actRecommended.add(&quot;Go skiing&quot;);</span>
+		
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		if(checkGoHiking())</span>
+<span class="fc" id="L92">			actRecommended.add(&quot;Go hiking&quot;);</span>
+		
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		if(checkGoSightseeing())</span>
+<span class="fc" id="L95">			actRecommended.add(&quot;Go Sightseeing&quot;);</span>
+		
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		if(checkGoBeering())</span>
+<span class="fc" id="L98">			actRecommended.add(&quot;Go Beering&quot;);</span>
+		
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		if(checkGoSwimming())</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">			if(this.place.hasCapacityProblems())</span>
+<span class="fc" id="L102">				actRecommended.add(&quot;Go to the beach&quot;);</span>
+			else
+<span class="fc" id="L104">				actRecommended.add(&quot;Go to the swimming pool&quot;);</span>
+		
+<span class="fc" id="L106">		return actRecommended;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
